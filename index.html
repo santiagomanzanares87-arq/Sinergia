@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sinergia - Arquitectura de calidad al alcance de todos</title>
     <style>
+        /* --- Definición de Fuentes Personalizadas --- */
+        @font-face {
+            font-family: 'Scifly Sans';
+            src: url('assets/fonts/SCIFLY-SANS.TTF') format('truetype');
+            font-weight: normal;
+        }
+
+        @font-face {
+            font-family: 'Bai Jamjuree Light';
+            src: url('assets/fonts/BAIJAMJUREE-LIGHT.TTF') format('truetype');
+            font-weight: 300; /* El peso 'light' suele ser 300 */
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -17,6 +30,10 @@
             --accent: #d4a574;
             --text: #333;
             --light-text: #666;
+
+            /* --- Aplicación de Fuentes en Variables (Opcional pero buena práctica) --- */
+            --font-headings: 'Scifly Sans', sans-serif;
+            --font-body: 'Bai Jamjuree Light', sans-serif;
         }
 
         html {
@@ -24,7 +41,8 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: var(--font-body); /* Aplicamos la fuente base a todo el cuerpo */
+            font-weight: 300; /* Establecemos el peso base */
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
@@ -114,7 +132,7 @@
             text-align: center;
             color: white;
             position: relative;
-            transition: background-image 1.5s ease-in-out; /* For slideshow */
+            transition: background-image 1.5s ease-in-out;
         }
         
         .hero::before {
@@ -142,8 +160,9 @@
         }
 
         .hero h1 {
-            font-size: 4rem;
-            font-weight: 300;
+            font-family: var(--font-headings); /* Aplicamos la fuente de títulos */
+            font-size: 4.5rem; /* Un poco más grande para el nuevo estilo */
+            font-weight: normal; /* Usamos el peso nativo de la fuente */
             margin-bottom: 1.5rem;
             letter-spacing: 3px;
             line-height: 1.2;
@@ -151,7 +170,6 @@
 
         .hero .subtitle {
             font-size: 1.3rem;
-            font-weight: 300;
             margin-bottom: 3rem;
             color: rgba(255,255,255,0.9);
         }
@@ -216,9 +234,10 @@
         }
 
         .section-title {
+            font-family: var(--font-headings); /* Aplicamos la fuente de títulos */
             text-align: center;
-            font-size: 3rem;
-            font-weight: 300;
+            font-size: 3.5rem; /* Un poco más grande */
+            font-weight: normal;
             margin-bottom: 1rem;
             color: var(--primary);
             letter-spacing: 2px;
@@ -262,7 +281,7 @@
         /* --- Portfolio Section --- */
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 2rem;
         }
 
@@ -309,7 +328,9 @@
         }
 
         .portfolio-overlay h3 {
-            font-size: 1.5rem;
+            font-family: var(--font-headings);
+            font-weight: normal;
+            font-size: 1.8rem;
             margin-bottom: 0.5rem;
         }
 
@@ -385,158 +406,47 @@
             gap: 4rem;
         }
 
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .contact-item {
-            display: flex;
-            gap: 1.5rem;
-            align-items: flex-start;
-        }
-
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--accent);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.3rem;
-            flex-shrink: 0;
-        }
-
-        .contact-item h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-        }
-
-        .contact-item p, .contact-item a {
-            color: var(--light-text);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .contact-item a:hover {
-            color: var(--accent);
-        }
-
+        .contact-info { display: flex; flex-direction: column; gap: 2rem; }
+        .contact-item { display: flex; gap: 1.5rem; align-items: flex-start; }
+        .contact-icon { width: 50px; height: 50px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.3rem; flex-shrink: 0; }
+        .contact-item h3 { font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--primary); font-family: var(--font-headings); font-weight: normal;}
+        .contact-item p, .contact-item a { color: var(--light-text); text-decoration: none; transition: color 0.3s; }
+        .contact-item a:hover { color: var(--accent); }
         .contact-form { display: flex; flex-direction: column; gap: 1.5rem; }
         .form-group { display: flex; flex-direction: column; }
         .form-group label { margin-bottom: 0.5rem; color: var(--text); font-weight: 500; }
-        .form-group input, .form-group textarea {
-            padding: 1rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 4px;
-            font-family: inherit;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
+        .form-group input, .form-group textarea { padding: 1rem; border: 2px solid #e0e0e0; border-radius: 4px; font-family: inherit; font-size: 1rem; transition: border-color 0.3s; }
         .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); }
         .form-group textarea { min-height: 150px; resize: vertical; }
 
         /* --- Footer --- */
-        footer {
-            background: var(--primary);
-            color: white;
-            padding: 3rem 5%;
-            text-align: center;
-        }
-
+        footer { background: var(--primary); color: white; padding: 3rem 5%; text-align: center; }
         .social-links { display: flex; gap: 2rem; justify-content: center; margin-bottom: 2rem; }
         .social-links a { color: white; font-size: 1.5rem; transition: color 0.3s; }
         .social-links a:hover { color: var(--accent); }
 
         /* --- WhatsApp Float Button --- */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: #25D366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.8rem;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-            cursor: pointer;
-            transition: transform 0.3s;
-            z-index: 999;
-            text-decoration: none;
-        }
+        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.8rem; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); cursor: pointer; transition: transform 0.3s; z-index: 999; text-decoration: none; }
         .whatsapp-float:hover { transform: scale(1.1); }
 
         /* --- Animations --- */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Scroll Animations */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s, transform 0.8s;
-        }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .reveal { opacity: 0; transform: translateY(50px); transition: opacity 0.8s, transform 0.8s; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
 
         /* --- Responsive Design --- */
-        @media (max-width: 992px) {
-            .about-content, .contact-container {
-                grid-template-columns: 1fr;
-            }
-        }
-        
+        @media (max-width: 992px) { .about-content, .contact-container { grid-template-columns: 1fr; } }
         @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-                z-index: 1002;
-            }
-            
+            .hamburger { display: flex; z-index: 1002; }
             .hamburger.active .bar:nth-child(2) { opacity: 0; }
             .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
             .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
-            .nav-links {
-                position: fixed;
-                left: -100%;
-                top: 0;
-                flex-direction: column;
-                background-color: var(--primary);
-                width: 100%;
-                height: 100vh;
-                text-align: center;
-                transition: 0.3s;
-                justify-content: center;
-                align-items: center;
-                gap: 4rem;
-            }
-            
-            .nav-links.active {
-                left: 0;
-            }
-            
-            .nav-links a {
-                color: white;
-                font-size: 1.5rem;
-            }
-
-            .hero h1 { font-size: 2.5rem; }
+            .nav-links { position: fixed; left: -100%; top: 0; flex-direction: column; background-color: var(--primary); width: 100%; height: 100vh; text-align: center; transition: 0.3s; justify-content: center; align-items: center; gap: 4rem; }
+            .nav-links.active { left: 0; }
+            .nav-links a { color: white; font-size: 1.5rem; }
+            .hero h1 { font-size: 3rem; }
             .hero .subtitle { font-size: 1.1rem; }
-            .section-title { font-size: 2.2rem; }
-            .portfolio-grid { grid-template-columns: 1fr; }
-            
+            .section-title { font-size: 2.5rem; }
             .lightbox-prev, .lightbox-next { font-size: 2rem; }
             .lightbox-prev { left: 5px; }
             .lightbox-next { right: 5px; }
@@ -583,8 +493,8 @@
             <h2 class="section-title reveal">Sobre Sinergia</h2>
             <div class="about-content reveal">
                 <div class="about-text">
-                    <p>En Sinergia, fusionamos diseño de alto nivel y construcción inteligente. Creamos una arquitectura excepcional que nace de la colaboración entre tus aspiraciones y tu presupuesto, logrando un resultado que es tanto bello como accesible.</p>
-                    <p>Nuestro enfoque se basa en la transparencia, la eficiencia y la innovación. Cada proyecto es una oportunidad para demostrar que la arquitectura de calidad no es un lujo, sino un derecho al que todos deberían poder acceder.</p>
+                    <p>En Sinergia, fusionamos diseño de alto nivel y construcción inteligente. Creamos una arquitectura excepcional que nace de la colaboración entre tus aspiraciones y tu presupuesto, logrando un resultado que es tanto estético como accesible.</p>
+                    <p>Nuestro enfoque se basa en la transparencia, la eficiencia y la innovación. Cada proyecto es una oportunidad para demostrar que la arquitectura de calidad no es un lujo, sino una posibilidad a la que todos deberían poder acceder.</p>
                     <a href="#contacto" class="btn btn-primary" style="margin-top: 1rem;">Trabajemos juntos</a>
                 </div>
                 <div class="about-image"></div>
@@ -597,49 +507,7 @@
         <div class="container">
             <h2 class="section-title reveal">Nuestros Proyectos</h2>
             <p class="section-subtitle reveal">Espacios diseñados con pasión y precisión</p>
-            
-            <div class="portfolio-grid">
-                <!-- Proyecto 1 -->
-                <div class="portfolio-item reveal" onclick="openLightbox('proyecto-01', 'Casa e9', 4, 'png')">
-                    <div class="portfolio-image" style="background-image: url('assets/images/portfolio/proyecto-01/Principal.png')"></div>
-                    <div class="portfolio-overlay">
-                        <h3>Casa e9</h3>
-                        <p>Arquitectura residencial</p>
-                    </div>
-                </div>
-                <!-- Proyecto 2 -->
-                <div class="portfolio-item reveal" onclick="openLightbox('proyecto-02', 'Casa f16', 7, 'png')">
-                    <div class="portfolio-image" style="background-image: url('assets/images/portfolio/proyecto-02/Principal.png')"></div>
-                    <div class="portfolio-overlay">
-                        <h3>Casa f16</h3>
-                        <p>Arquitectura residencial</p>
-                    </div>
-                </div>
-                <!-- Proyecto 3 -->
-                <div class="portfolio-item reveal" onclick="openLightbox('proyecto-03', 'Casa J10', 6, 'png')">
-                    <div class="portfolio-image" style="background-image: url('assets/images/portfolio/proyecto-03/Principal.png')"></div>
-                    <div class="portfolio-overlay">
-                        <h3>Casa J10</h3>
-                        <p>Arquitectura residencial</p>
-                    </div>
-                </div>
-                <!-- Proyecto 4 (Nuevo) -->
-                <div class="portfolio-item reveal" onclick="openLightbox('proyecto-04', 'Casa N', 10, 'jpeg')">
-                    <div class="portfolio-image" style="background-image: url('assets/images/portfolio/proyecto-04/principal.jpeg')"></div>
-                    <div class="portfolio-overlay">
-                        <h3>Casa N</h3>
-                        <p>Arquitectura residencial</p>
-                    </div>
-                </div>
-                <!-- Proyecto 5 (Nuevo) -->
-                <div class="portfolio-item reveal" onclick="openLightbox('proyecto-05', 'Casa CEO', 9, 'jpeg')">
-                    <div class="portfolio-image" style="background-image: url('assets/images/portfolio/proyecto-05/principal.jpeg')"></div>
-                    <div class="portfolio-overlay">
-                        <h3>Casa CEO</h3>
-                        <p>Arquitectura residencial</p>
-                    </div>
-                </div>
-            </div>
+            <div class="portfolio-grid"></div>
         </div>
     </section>
 
@@ -658,7 +526,6 @@
         <div class="container">
             <h2 class="section-title reveal">Contacto</h2>
             <p class="section-subtitle reveal">Hablemos sobre tu próximo proyecto</p>
-            
             <div class="contact-container reveal">
                 <div class="contact-info">
                     <div class="contact-item">
@@ -695,7 +562,6 @@
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_template" value="table">
                     <input type="hidden" name="_next" value="https://tudominio.com/gracias.html">
-                    
                     <div class="form-group"><label>Nombre</label><input type="text" name="nombre" required></div>
                     <div class="form-group"><label>Email</label><input type="email" name="email" required></div>
                     <div class="form-group"><label>Teléfono (opcional)</label><input type="tel" name="telefono"></div>
@@ -726,13 +592,11 @@
         // --- 1. Experiencia Móvil (Menú Hamburguesa) ---
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
-
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             navLinks.classList.toggle('active');
             document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto';
         });
-
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
@@ -743,82 +607,102 @@
 
         // --- 2. Slideshow Automático en Hero Section ---
         const heroSection = document.getElementById('inicio');
-        // IMPORTANTE: Asegúrate de que estos nombres coincidan EXACTAMENTE con tus archivos.
-        const heroImages = [
-            'assets/images/hero/mamprin.png',
-            'assets/images/hero/CEO.jpeg',
-            'assets/images/hero/N.jpeg'
-        ];
+        const heroImages = [ 'assets/images/hero/01.CK.png', 'assets/images/hero/02.GD.png', 'assets/images/hero/03.E9F.png', 'assets/images/hero/04.E9C.png', 'assets/images/hero/05.F22A.png', 'assets/images/hero/06.J9.png' ];
         let currentImageIndex = 0;
-
         function changeHeroImage() {
             currentImageIndex = (currentImageIndex + 1) % heroImages.length;
             heroSection.style.backgroundImage = `url('${heroImages[currentImageIndex]}')`;
         }
-        
-        // Pre-cargar imágenes para una transición más suave
-        heroImages.forEach(src => {
-            const img = new Image();
-            img.src = src;
-        });
-
+        heroImages.forEach(src => { new Image().src = src; });
         heroSection.style.backgroundImage = `url('${heroImages[0]}')`;
         setInterval(changeHeroImage, 5000);
 
-        // --- 3. Galería de Proyectos Mejorada (Lightbox) ---
+        // --- 3. Base de Datos de Proyectos ---
+        const projects = [
+            { folder: 'AG - EL MIRADOR', title: 'El Mirador', principalImage: '01.Principal.png', images: ['01.Principal.png', '02.Contrafrente.png', '03.Contrafrente.png', '04.Interior.png', '05.Cocina.png'] },
+            { folder: 'AL - SMT - AMPLIACION', title: 'Ampliación SMT', principalImage: '01.Principal.png', images: ['01.Principal.png', '02.Frente.png', '03.Frente.png', '04.Contrafrente.png', '05.Interior.png', '06.Baño.png', '07.Planta.png'] },
+            { folder: 'MA E9 - VILABONITA', title: 'Casa E9 - Vilabonita', principalImage: '01.Principal.png', images: ['01.Principal.png', '02.Frente.png', '03.Frente.png', '04.Confrafrente.png', '05.Contrafrente.png'] },
+            { folder: 'MA F16 - VILABONITA', title: 'Casa F16 - Vilabonita', principalImage: '01.Principal.png', images: ['01.Principal.png', '02.Contrafrente.png', '03.Contrafrente.png', '04.Frente.png', '05.Interior.png', '06.Interior.png', '07.Planta.png'] },
+            { folder: 'MA J10 - VILABONITA', title: 'Casa J10 - Vilabonita', principalImage: '01.Principal.png', images: ['01.Principal.png', '02.Garage.png'] },
+            { folder: 'N - Alto de las Cañas', title: 'Alto de las Cañas', principalImage: 'principal.jpeg', images: ['principal.jpeg', '2.jpeg', '3.jpeg', '4.jpeg', '5.jpeg', '6.jpeg', '7.jpeg', '8.jpeg', '9.jpeg', '10.jpeg'] },
+            { folder: 'CEO - Los Nogales', title: 'Casa CEO - Los Nogales', principalImage: 'Principal.jpeg', images: ['Principal.jpeg', '2.jpeg', '3.jpeg', '4.jpeg', '5.jpeg', '6.jpeg', '7.jpeg', '8.jpeg', '9.jpeg'] },
+            { folder: 'AA - ALTOS DEL CEBIL', title: 'Altos del Cebil', principalImage: 'FRENTE LUMION.jpg', images: ['FRENTE LUMION.jpg', 'CONTRAFRENTE LUMION.jpg', 'GALERIA LUMION.jpg'] },
+            { folder: 'ALDEA', title: 'Aldea', principalImage: '01.jpg', images: ['01.jpg', '02.jpg', '03.jpg', '05.jpg', '07.jpg', '08.jpg', '10.jpg'] },
+            { folder: 'BAR SP - SAN PABLO', title: 'Bar SP - San Pablo', principalImage: '01.Principal.png', images: ['01.Principal.png', '02.Frente.png', '03.Interior.png', '04.Frente.png'] },
+            { folder: 'CASA DE HUESPEDES - TAFI DEL VALLE', title: 'Casa de Huéspedes', principalImage: 'FRENTE.jpg', images: ['FRENTE.jpg', 'IMG_6594.jpg', 'IMG_6599.jpg', 'IMG_6604.jpg'] },
+            { folder: 'CC - JOCKEY', title: 'Casa CC - Jockey', principalImage: '01.Principal.png', images: ['01.Principal.png', '02.Frente.png', '03.Frente.png', '04.Contrafrente.png'] },
+            { folder: 'CEC - YERBA BUENA', title: 'CEC - Yerba Buena', principalImage: '01.Principal.png', images: ['01.Principal.png', '02.Frente.png', '03.General.png', '04.SUM.png', '05.SUM.png'] },
+            { folder: 'CK - TAFI VIEJO', title: 'CK - Tafí Viejo', principalImage: '01.Principal.png', images: ['01.Principal.png', '02.Frente.png', '03.Peatonal.png'] },
+            { folder: 'DC - ALTO VERDE 3', title: 'DC - Alto Verde 3', principalImage: '01.Principal.png', images: ['01.Principal.png', '02.Frente.png', '03.Contrafrente.png', '04.Interior.png', '05.Interior.png'] },
+            { folder: 'DIP - LA RESERVA', title: 'DIP - La Reserva', principalImage: '01.Principal.png', images: ['01.Principal.png', '02.Frente.png', '03.Contrafrente.png', '04.Galeria.png'] },
+            { folder: 'DN - YERBA BUENA', title: 'DN - Yerba Buena', principalImage: '01.Principal.png', images: ['01.Principal.png', '02.Frente.png', '03.Contrafrente.png', '04.Frente.png', '05.Galeria.png'] },
+            { folder: 'EM - ALTO VERDE 3', title: 'EM - Alto Verde 3', principalImage: '01.Principal.png', images: ['01.Principal.png', '02.Contrafrente.png', '03.Galeria.png'] },
+            { folder: 'EZ - TAFI DEL VALLE', title: 'EZ - Tafí del Valle', principalImage: '01.Principal.png', images: ['01.Principal.png', '02.Contrafrente.png', '03.Galeria.png', '04.acceso.png', '05.Frente.png', '05.jpg', '06.interior.png', '06.jpg'] },
+            { folder: 'GD - LAS QUINTAS II', title: 'GD - Las Quintas II', principalImage: '01.Principal.png', images: ['01.Principal.png', '02.Contrafrente.png', 'Planta Alta nuevaa.jpg', 'Planta Baja Nueva.jpg'] },
+            { folder: 'JD - PORTAL DEL SOL', title: 'JD - Portal del Sol', principalImage: '01.Principal.png', images: ['01.Principal.png', '02.Contrafrente.png'] },
+            { folder: 'JR - LOCAL - SMT', title: 'Local JR - SMT', principalImage: '01.Principal.jpg', images: ['01.Principal.jpg', '02.Frente.jpg', '03.Frente.jpg', '04.Frente.jpg'] },
+            { folder: 'MA - ALTO VERDE 3', title: 'MA - Alto Verde 3', principalImage: '01.Principal.png', images: ['01.Principal.png', '02.Contrafrente.jpg', '03.Frente.jpg'] },
+            { folder: 'MA E1 - VILABONITA', title: 'Casa E1 - Vilabonita', principalImage: '01.Principal.jpg', images: ['01.Principal.jpg', '02.Frente.jpg', '03.Frente.jpg', '04.Acceso.jpg'] },
+            { folder: 'MA F22 - VILABONITA', title: 'Casa F22 - Vilabonita', principalImage: '01.Principal.png', images: ['01.Principal.png', '02.Frente.png', '03.Acceso.png', '04.Galeria.png', '05.Galeria.png', '06.Garage.png'] },
+            { folder: 'MA J9 - VILABONITA', title: 'Casa J9 - Vilabonita', principalImage: '01.Principal.png', images: ['01.Principal.png', '02.Frente.png', '03.Contrafrente.png', '04.Planta.png'] },
+            { folder: 'MA1 - EL PINAR', title: 'MA1 - El Pinar', principalImage: '01.Principal.png', images: ['01.Principal.png', '02.Frente.png', '03.Contrafrente.png', '04.Galeria.png'] },
+            { folder: 'MR - SOLAR DE TAFI', title: 'MR - Solar de Tafí', principalImage: '01.Principal.png', images: ['01.Principal.png', '02.Contrafrente.png'] },
+            { folder: 'OA - PORTAL DEL SOL', title: 'OA - Portal del Sol', principalImage: '01.Principal.png', images: ['01.Principal.png', '02.Contrafrente.png', '03.Frente.png', '04.Acceso.png'] },
+            { folder: 'SJ - LOMALINDA', title: 'SJ - Lomalinda', principalImage: '01.Principal.png', images: ['01.Principal.png', '02.Contrafrente.png', '03.Frente.png'] },
+            { folder: 'SO - CONSULTORIO - SMT', title: 'Consultorio SO - SMT', principalImage: '01.Principal.png', images: ['01.Principal.png', '02.Frente.png', '03.Frente.png', '04.Frente.png', '05.Frente.png', '06.Frente.png'] },
+            { folder: 'SP - TAFI DEL VALLE', title: 'SP - Tafí del Valle', principalImage: '01.Principal.png', images: ['01.Principal.png', '02.Frente.png', '03.Contrafrente.png', '04.Patio.png', '05.Galeria.png', '06.Living.png', '07.Living.png'] },
+            { folder: 'YC - LAS YUNGAS', title: 'YC - Las Yungas', principalImage: '01.Principal.png', images: ['01.Principal.png', '02.Frente.png', '03.Galeria.png'] },
+        ];
+
+        // --- 4. Generación Dinámica del Portafolio y Lógica del Lightbox ---
+        const portfolioGrid = document.querySelector('.portfolio-grid');
+        projects.forEach(project => {
+            const folderPath = encodeURIComponent(project.folder);
+            const imagePath = encodeURIComponent(project.principalImage);
+            const portfolioItem = document.createElement('div');
+            portfolioItem.className = 'portfolio-item reveal';
+            portfolioItem.dataset.folder = project.folder;
+            portfolioItem.innerHTML = `<div class="portfolio-image" style="background-image: url('assets/images/portfolio/${folderPath}/${imagePath}')"></div><div class="portfolio-overlay"><h3>${project.title}</h3><p>Arquitectura residencial</p></div>`;
+            portfolioGrid.appendChild(portfolioItem);
+        });
+
         const lightbox = document.getElementById('galleryLightbox');
         const lightboxImg = lightbox.querySelector('.lightbox-img');
         const closeBtn = lightbox.querySelector('.lightbox-close');
         const prevBtn = lightbox.querySelector('.lightbox-prev');
         const nextBtn = lightbox.querySelector('.lightbox-next');
-
         let currentProjectImages = [];
         let currentImageLightboxIndex = 0;
-
-        window.openLightbox = function(projectFolder, projectName, imageCount, extension) {
-            currentProjectImages = [];
-            
-            // Lógica para manejar tanto 'Principal.png' como 'principal.jpg'
-            let principalImageName = 'principal';
-            if (extension === 'png') {
-                principalImageName = 'Principal';
+        let currentProjectFolder = '';
+        
+        portfolioGrid.addEventListener('click', (e) => {
+            const item = e.target.closest('.portfolio-item');
+            if (item) {
+                const folderName = item.dataset.folder;
+                const project = projects.find(p => p.folder === folderName);
+                if (project) {
+                    currentProjectImages = project.images;
+                    currentProjectFolder = project.folder;
+                    currentImageLightboxIndex = 0;
+                    updateLightboxImage();
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
             }
-            const principalImage = `assets/images/portfolio/${projectFolder}/${principalImageName}.${extension}`;
-            currentProjectImages.push(principalImage);
-            
-            for (let i = 2; i <= imageCount; i++) {
-                currentProjectImages.push(`assets/images/portfolio/${projectFolder}/${i}.${extension}`);
-            }
-            
-            currentImageLightboxIndex = 0;
-            updateLightboxImage();
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
+        });
 
-        function closeLightbox() {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
+        function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = 'auto'; }
         function updateLightboxImage() {
-            lightboxImg.src = currentProjectImages[currentImageLightboxIndex];
+            const folderPath = encodeURIComponent(currentProjectFolder);
+            const imagePath = encodeURIComponent(currentProjectImages[currentImageLightboxIndex]);
+            lightboxImg.src = `assets/images/portfolio/${folderPath}/${imagePath}`;
         }
-
-        function showNextImage() {
-            currentImageLightboxIndex = (currentImageLightboxIndex + 1) % currentProjectImages.length;
-            updateLightboxImage();
-        }
-
-        function showPrevImage() {
-            currentImageLightboxIndex = (currentImageLightboxIndex - 1 + currentProjectImages.length) % currentProjectImages.length;
-            updateLightboxImage();
-        }
+        function showNextImage() { currentImageLightboxIndex = (currentImageLightboxIndex + 1) % currentProjectImages.length; updateLightboxImage(); }
+        function showPrevImage() { currentImageLightboxIndex = (currentImageLightboxIndex - 1 + currentProjectImages.length) % currentProjectImages.length; updateLightboxImage(); }
 
         closeBtn.addEventListener('click', closeLightbox);
         nextBtn.addEventListener('click', showNextImage);
         prevBtn.addEventListener('click', showPrevImage);
-
         document.addEventListener('keydown', (e) => {
             if (!lightbox.classList.contains('active')) return;
             if (e.key === 'Escape') closeLightbox();
@@ -826,8 +710,7 @@
             if (e.key === 'ArrowLeft') showPrevImage();
         });
         
-        // --- 4. Animaciones al Desplazarse ---
-        const revealElements = document.querySelectorAll('.reveal');
+        // --- 5. Animaciones al Desplazarse ---
         const revealObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -836,10 +719,7 @@
                 }
             });
         }, { threshold: 0.1 });
-
-        revealElements.forEach(elem => {
-            revealObserver.observe(elem);
-        });
+        document.querySelectorAll('.reveal').forEach(elem => { revealObserver.observe(elem); });
     });
     </script>
 </body>
