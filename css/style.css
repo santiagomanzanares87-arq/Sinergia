@@ -1,12 +1,14 @@
 /* --- Definición de Fuentes Personalizadas --- */
 @font-face {
     font-family: 'Scifly Sans';
-    src: url('../fonts/SCIFLY-SANS.TTF') format('truetype');
+    /* Ruta corregida: Sube un nivel desde 'css' y luego entra a 'assets/fonts' */
+    src: url('../assets/fonts/SCIFLY-SANS.TTF') format('truetype');
     font-weight: normal;
 }
 @font-face {
     font-family: 'Bai Jamjuree Light';
-    src: url('../fonts/BAIJAMJUREE-LIGHT.TTF') format('truetype');
+    /* Ruta corregida */
+    src: url('../assets/fonts/BAIJAMJUREE-LIGHT.TTF') format('truetype');
     font-weight: 300;
 }
 
@@ -69,7 +71,8 @@ nav .container { max-width: 1400px; margin: 0 auto; display: flex; justify-conte
 /* --- About Section --- */
 .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
 .about-text p { font-size: 1.1rem; line-height: 1.8; color: var(--light-text); margin-bottom: 1.5rem; }
-.about-image { height: 500px; background: url('../images/team/yo.jpg'); background-size: cover; background-position: center; border-radius: 4px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+/* Ruta corregida */
+.about-image { height: 500px; background: url('../assets/images/team/yo.jpg'); background-size: cover; background-position: center; border-radius: 4px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
 
 /* --- Portfolio Section --- */
 .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; }
@@ -135,9 +138,8 @@ footer { background: var(--primary); color: white; padding: 3rem 5%; text-align:
     .nav-links.active { left: 0; }
     .nav-links a { color: white; font-size: 1.5rem; }
     
-    /* --- CORRECCIÓN HERO PARA MÓVILES --- */
     .hero {
-        background-attachment: scroll; /* Mejora rendimiento y compatibilidad en móviles */
+        background-attachment: scroll;
     }
 
     .hero-content { padding-top: 5rem; }
