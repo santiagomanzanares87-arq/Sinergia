@@ -59,7 +59,7 @@
         .hero h1 { font-family: var(--font-headings); font-size: 4.5rem; font-weight: normal; margin-bottom: 1.5rem; letter-spacing: 3px; line-height: 1.2; }
         .hero .subtitle { font-size: 1.3rem; margin-bottom: 3rem; color: rgba(255,255,255,0.9); }
         .cta-buttons { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
-        .btn { padding: 1rem 2.5rem; border-radius: 4px; cursor: pointer; font-size: 1rem; font-weight: 600; text-decoration: none; display: inline-block; transition: all 0.3s; letter-spacing: 1px; border: 2px solid transparent; min-height: 48px; /* Mejora tap target */ }
+        .btn { padding: 1rem 2.5rem; border-radius: 4px; cursor: pointer; font-size: 1rem; font-weight: 600; text-decoration: none; display: inline-block; transition: all 0.3s; letter-spacing: 1px; border: 2px solid transparent; min-height: 48px; }
         .btn-primary { background: var(--accent); color: white; border-color: var(--accent); }
         .btn-primary:hover { background: #c49464; border-color: #c49464; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(212,165,116,0.3); }
         .btn-secondary { background: transparent; color: white; border-color: white; }
@@ -81,7 +81,7 @@
         .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; }
         .portfolio-item { position: relative; height: 400px; border-radius: 4px; overflow: hidden; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s; }
         .portfolio-item:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
-        .portfolio-image { width: 100%; height: 100%; background-color: #ddd; /* Placeholder color */ background-size: cover; background-position: center; transition: transform 0.5s, opacity 0.5s; opacity: 0; }
+        .portfolio-image { width: 100%; height: 100%; background-color: #ddd; background-size: cover; background-position: center; transition: transform 0.5s, opacity 0.5s; opacity: 0; }
         .portfolio-image.loaded { opacity: 1; }
         .portfolio-item:hover .portfolio-image { transform: scale(1.1); }
         .portfolio-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(26,26,26,0.95), transparent); padding: 2rem; color: white; transform: translateY(100%); transition: transform 0.3s; }
@@ -141,12 +141,23 @@
             .nav-links.active { left: 0; }
             .nav-links a { color: white; font-size: 1.5rem; }
             
-            .hero h1 { font-size: 2.8rem; } /* Ajuste de tipografía */
-            .hero .subtitle { font-size: 1.1rem; }
-            .section-title { font-size: 2.2rem; } /* Ajuste de tipografía */
-            .about-text p { font-size: 1rem; } /* Ajuste de tipografía */
+            /* --- OPTIMIZACIONES PARA EL HERO EN MÓVIL --- */
+            .hero-content {
+                padding-top: 5rem; /* Empuja el contenido hacia abajo para dar espacio al logo */
+            }
+            .hero-logo {
+                width: 160px; /* Hacemos el logo más pequeño */
+                margin-bottom: 1.5rem; /* Reducimos el espacio inferior */
+            }
+            .hero h1 {
+                font-size: 2.4rem; /* Reducimos significativamente el texto principal */
+                line-height: 1.3; /* Juntamos un poco más las líneas */
+            }
 
-            .portfolio-item { height: 320px; } /* Reducción de altura en móvil */
+            .hero .subtitle { font-size: 1.1rem; }
+            .section-title { font-size: 2.2rem; }
+            .about-text p { font-size: 1rem; }
+            .portfolio-item { height: 320px; }
 
             .lightbox-prev, .lightbox-next { font-size: 2rem; }
             .lightbox-prev { left: 5px; }
@@ -252,13 +263,11 @@
     <script>
     document.addEventListener('DOMContentLoaded', function () {
         
-        // --- 1. Experiencia Móvil (Menú Hamburguesa) ---
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
         hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); navLinks.classList.toggle('active'); document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto'; });
         document.querySelectorAll('.nav-links a').forEach(link => { link.addEventListener('click', () => { hamburger.classList.remove('active'); navLinks.classList.remove('active'); document.body.style.overflow = 'auto'; }); });
 
-        // --- 2. Slideshow Automático en Hero Section ---
         const heroSection = document.getElementById('inicio');
         const heroImages = [ 'assets/images/hero/01.CK.png', 'assets/images/hero/02.GD.png', 'assets/images/hero/03.E9F.png', 'assets/images/hero/04.E9C.png', 'assets/images/hero/05.F22A.png', 'assets/images/hero/06.J9.png' ];
         let currentImageIndex = 0;
@@ -267,7 +276,6 @@
         heroSection.style.backgroundImage = `url('${heroImages[0]}')`;
         setInterval(changeHeroImage, 5000);
 
-        // --- 3. Base de Datos de Proyectos ---
         const projects = [
             { folder: 'AG - EL MIRADOR', title: 'El Mirador', principalImage: '01.Principal.png', images: ['01.Principal.png', '02.Contrafrente.png', '03.Contrafrente.png', '04.Interior.png', '05.Cocina.png'] },
             { folder: 'AL - SMT - AMPLIACION', title: 'Ampliación SMT', principalImage: '01.Principal.png', images: ['01.Principal.png', '02.Frente.png', '03.Frente.png', '04.Contrafrente.png', '05.Interior.png', '06.Baño.png', '07.Planta.png'] },
@@ -304,13 +312,11 @@
             { folder: 'YC - LAS YUNGAS', title: 'YC - Las Yungas', principalImage: '01.Principal.png', images: ['01.Principal.png', '02.Frente.png', '03.Galeria.png'] },
         ];
 
-        // --- 4. Carga Progresiva y Lazy Loading del Portafolio ---
         const portfolioGrid = document.querySelector('.portfolio-grid');
         const loadMoreContainer = document.querySelector('.load-more-container');
         const projectsToShowInitially = 6;
-        let revealObserver; // Declarar el observer globalmente
+        let revealObserver;
 
-        // ** Lazy Loading Observer **
         const lazyLoadObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -318,25 +324,21 @@
                     const imageUrl = portfolioImage.dataset.src;
                     portfolioImage.style.backgroundImage = `url('${imageUrl}')`;
                     portfolioImage.classList.add('loaded');
-                    observer.unobserve(portfolioImage); // Dejar de observar una vez cargada
+                    observer.unobserve(portfolioImage);
                 }
             });
-        }, { rootMargin: '0px 0px 200px 0px' }); // Cargar imágenes 200px antes de que entren en pantalla
+        }, { rootMargin: '0px 0px 200px 0px' });
 
         const createProjectItem = (project) => {
             const folderPath = encodeURIComponent(project.folder);
             const imagePath = encodeURIComponent(project.principalImage);
             const fullImagePath = `assets/images/portfolio/${folderPath}/${imagePath}`;
-
             const portfolioItem = document.createElement('div');
             portfolioItem.className = 'portfolio-item reveal';
             portfolioItem.dataset.folder = project.folder;
             portfolioItem.innerHTML = `<div class="portfolio-image" data-src="${fullImagePath}"></div><div class="portfolio-overlay"><h3>${project.title}</h3><p>Arquitectura residencial</p></div>`;
-            
-            // Observar la imagen para lazy loading
             const imageDiv = portfolioItem.querySelector('.portfolio-image');
             lazyLoadObserver.observe(imageDiv);
-            
             return portfolioItem;
         };
 
@@ -347,7 +349,6 @@
             loadMoreButton.innerText = 'Ver más proyectos';
             loadMoreButton.className = 'btn btn-primary';
             loadMoreContainer.appendChild(loadMoreButton);
-
             loadMoreButton.addEventListener('click', () => {
                 projects.slice(projectsToShowInitially).forEach(project => {
                     const newItem = createProjectItem(project);
@@ -358,7 +359,6 @@
             });
         }
 
-        // --- 5. Lógica del Lightbox ---
         const lightbox = document.getElementById('galleryLightbox');
         const lightboxImg = lightbox.querySelector('.lightbox-img');
         const closeBtn = lightbox.querySelector('.lightbox-close');
@@ -401,7 +401,6 @@
             if (e.key === 'ArrowLeft') showPrevImage();
         });
         
-        // --- 6. Animaciones al Desplazarse ---
         revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
