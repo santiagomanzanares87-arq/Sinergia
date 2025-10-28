@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sinergia - Arquitectura de calidad al alcance de todos</title>
-    <!-- El CSS ahora se enlaza desde un archivo externo -->
+    <!-- Ruta correcta al CSS desde la raíz -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <!-- Navigation -->
     <nav>
         <div class="container">
+            <!-- Ruta corregida a los logos desde la raíz -->
             <a href="#inicio" class="logo"><img src="assets/images/logos/logo-negro.png" alt="Sinergia"></a>
             <ul class="nav-links">
                 <li><a href="#inicio">Inicio</a></li>
@@ -25,6 +26,7 @@
     <!-- Hero Section -->
     <section id="inicio" class="hero">
         <div class="hero-content">
+            <!-- Ruta corregida a los logos desde la raíz -->
             <img src="assets/images/logos/logo-blanco.png" alt="Sinergia" class="hero-logo">
             <h1>Arquitectura de calidad<br>al alcance de todos</h1>
             <p class="subtitle">Diseño de alto nivel y construcción inteligente</p>
@@ -111,6 +113,7 @@
         document.querySelectorAll('.nav-links a').forEach(link => { link.addEventListener('click', () => { hamburger.classList.remove('active'); navLinks.classList.remove('active'); document.body.style.overflow = 'auto'; }); });
 
         const heroSection = document.getElementById('inicio');
+        // --- RUTAS CORREGIDAS PARA JS (DESDE LA RAÍZ) ---
         const heroImages = [ 'assets/images/hero/01.CK.png', 'assets/images/hero/02.GD.png', 'assets/images/hero/03.E9F.png', 'assets/images/hero/04.E9C.png', 'assets/images/hero/05.F22A.png', 'assets/images/hero/06.J9.png' ];
         let currentImageIndex = 0;
         function changeHeroImage() { currentImageIndex = (currentImageIndex + 1) % heroImages.length; heroSection.style.backgroundImage = `url('${heroImages[currentImageIndex]}')`; }
@@ -174,7 +177,9 @@
         const createProjectItem = (project) => {
             const folderPath = encodeURIComponent(project.folder);
             const imagePath = encodeURIComponent(project.principalImage);
+            // --- RUTA CORREGIDA PARA JS (DESDE LA RAÍZ) ---
             const fullImagePath = `assets/images/portfolio/${folderPath}/${imagePath}`;
+
             const portfolioItem = document.createElement('div');
             portfolioItem.className = 'portfolio-item reveal';
             portfolioItem.dataset.folder = project.folder;
@@ -228,6 +233,7 @@
         function updateLightboxImage() {
             const folderPath = encodeURIComponent(currentProjectFolder);
             const imagePath = encodeURIComponent(currentProjectImages[currentImageLightboxIndex]);
+            // --- RUTA CORREGIDA PARA JS (DESDE LA RAÍZ) ---
             lightboxImg.src = `assets/images/portfolio/${folderPath}/${imagePath}`;
         }
         function showNextImage() { currentImageLightboxIndex = (currentImageLightboxIndex + 1) % currentProjectImages.length; updateLightboxImage(); }
