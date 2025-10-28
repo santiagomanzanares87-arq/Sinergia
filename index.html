@@ -15,7 +15,7 @@
         @font-face {
             font-family: 'Bai Jamjuree Light';
             src: url('assets/fonts/BAIJAMJUREE-LIGHT.TTF') format('truetype');
-            font-weight: 300; /* El peso 'light' suele ser 300 */
+            font-weight: 300;
         }
 
         * {
@@ -26,12 +26,14 @@
 
         :root {
             --primary: #1a1a1a;
-            --secondary: #f5f5f5;
             --accent: #d4a574;
             --text: #333;
             --light-text: #666;
 
-            /* --- Aplicación de Fuentes en Variables (Opcional pero buena práctica) --- */
+            /* --- Nueva Paleta de Grises "Bison" --- */
+            --bison-bg-light: #F0F0F0;  /* Un gris muy claro y neutro para el fondo principal */
+            --bison-bg-dark: #EAEAEA;   /* Un gris ligeramente más oscuro para las secciones alternas */
+            
             --font-headings: 'Scifly Sans', sans-serif;
             --font-body: 'Bai Jamjuree Light', sans-serif;
         }
@@ -41,12 +43,12 @@
         }
 
         body {
-            font-family: var(--font-body); /* Aplicamos la fuente base a todo el cuerpo */
-            font-weight: 300; /* Establecemos el peso base */
+            font-family: var(--font-body);
+            font-weight: 300;
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
-            background: var(--secondary);
+            background: var(--bison-bg-light); /* Aplicamos el nuevo color de fondo */
         }
 
         /* --- Navigation --- */
@@ -70,342 +72,77 @@
             align-items: center;
         }
 
-        .logo img {
-            height: 50px;
-            width: auto;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-            position: relative;
-            padding-bottom: 5px;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Mobile Nav */
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .hamburger .bar {
-            width: 25px;
-            height: 3px;
-            background-color: var(--primary);
-            transition: all 0.3s ease;
-        }
+        .logo img { height: 50px; width: auto; }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a { color: var(--text); text-decoration: none; font-weight: 500; transition: color 0.3s; position: relative; padding-bottom: 5px; }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.3s; }
+        .nav-links a:hover::after { width: 100%; }
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+        .hamburger .bar { width: 25px; height: 3px; background-color: var(--primary); transition: all 0.3s ease; }
 
         /* --- Hero Section --- */
-        .hero {
-            height: 100vh;
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            position: relative;
-            transition: background-image 1.5s ease-in-out;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(26,26,26,0.7), rgba(26,26,26,0.5));
-        }
-
-        .hero-content {
-            max-width: 900px;
-            padding: 0 2rem;
-            animation: fadeInUp 1s ease-out;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-logo {
-            width: 200px;
-            margin-bottom: 2rem;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
-        }
-
-        .hero h1 {
-            font-family: var(--font-headings); /* Aplicamos la fuente de títulos */
-            font-size: 4.5rem; /* Un poco más grande para el nuevo estilo */
-            font-weight: normal; /* Usamos el peso nativo de la fuente */
-            margin-bottom: 1.5rem;
-            letter-spacing: 3px;
-            line-height: 1.2;
-        }
-
-        .hero .subtitle {
-            font-size: 1.3rem;
-            margin-bottom: 3rem;
-            color: rgba(255,255,255,0.9);
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1rem 2.5rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s;
-            letter-spacing: 1px;
-            border: 2px solid transparent;
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            color: white;
-            border-color: var(--accent);
-        }
-
-        .btn-primary:hover {
-            background: #c49464;
-            border-color: #c49464;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(212,165,116,0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border-color: white;
-        }
-
-        .btn-secondary:hover {
-            background: white;
-            color: var(--primary);
-        }
+        .hero { height: 100vh; background-size: cover; background-position: center; background-attachment: fixed; display: flex; align-items: center; justify-content: center; text-align: center; color: white; position: relative; transition: background-image 1.5s ease-in-out; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(26,26,26,0.7), rgba(26,26,26,0.5)); }
+        .hero-content { max-width: 900px; padding: 0 2rem; animation: fadeInUp 1s ease-out; position: relative; z-index: 2; }
+        .hero-logo { width: 200px; margin-bottom: 2rem; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); }
+        .hero h1 { font-family: var(--font-headings); font-size: 4.5rem; font-weight: normal; margin-bottom: 1.5rem; letter-spacing: 3px; line-height: 1.2; }
+        .hero .subtitle { font-size: 1.3rem; margin-bottom: 3rem; color: rgba(255,255,255,0.9); }
+        .cta-buttons { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+        .btn { padding: 1rem 2.5rem; border-radius: 4px; cursor: pointer; font-size: 1rem; font-weight: 600; text-decoration: none; display: inline-block; transition: all 0.3s; letter-spacing: 1px; border: 2px solid transparent; }
+        .btn-primary { background: var(--accent); color: white; border-color: var(--accent); }
+        .btn-primary:hover { background: #c49464; border-color: #c49464; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(212,165,116,0.3); }
+        .btn-secondary { background: transparent; color: white; border-color: white; }
+        .btn-secondary:hover { background: white; color: var(--primary); }
 
         /* --- General Section Styling --- */
         .section {
             padding: 8rem 5%;
-            background: white;
+            background: var(--bison-bg-light); /* Aplicamos nuevo color */
         }
-        
         .section.bg-light {
-            background: var(--secondary);
+            background: var(--bison-bg-dark); /* Aplicamos nuevo color alterno */
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-family: var(--font-headings); /* Aplicamos la fuente de títulos */
-            text-align: center;
-            font-size: 3.5rem; /* Un poco más grande */
-            font-weight: normal;
-            margin-bottom: 1rem;
-            color: var(--primary);
-            letter-spacing: 2px;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.2rem;
-            color: var(--light-text);
-            margin-bottom: 4rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .section-title { font-family: var(--font-headings); text-align: center; font-size: 3.5rem; font-weight: normal; margin-bottom: 1rem; color: var(--primary); letter-spacing: 2px; }
+        .section-subtitle { text-align: center; font-size: 1.2rem; color: var(--light-text); margin-bottom: 4rem; max-width: 800px; margin-left: auto; margin-right: auto; }
 
         /* --- About Section --- */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-text p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--light-text);
-            margin-bottom: 1.5rem;
-        }
-
-        .about-image {
-            height: 500px;
-            background: url('assets/images/team/yo.jpg');
-            background-size: cover;
-            background-position: center;
-            border-radius: 4px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-        }
+        .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .about-text p { font-size: 1.1rem; line-height: 1.8; color: var(--light-text); margin-bottom: 1.5rem; }
+        .about-image { height: 500px; background: url('assets/images/team/yo.jpg'); background-size: cover; background-position: center; border-radius: 4px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
 
         /* --- Portfolio Section --- */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2rem;
-        }
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; }
+        .portfolio-item { position: relative; height: 400px; border-radius: 4px; overflow: hidden; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s; }
+        .portfolio-item:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+        .portfolio-image { width: 100%; height: 100%; background-size: cover; background-position: center; transition: transform 0.5s; }
+        .portfolio-item:hover .portfolio-image { transform: scale(1.1); }
+        .portfolio-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(26,26,26,0.95), transparent); padding: 2rem; color: white; transform: translateY(100%); transition: transform 0.3s; }
+        .portfolio-item:hover .portfolio-overlay { transform: translateY(0); }
+        .portfolio-overlay h3 { font-family: var(--font-headings); font-weight: normal; font-size: 1.8rem; margin-bottom: 0.5rem; }
+        .portfolio-overlay p { color: rgba(255,255,255,0.8); font-size: 0.9rem; }
 
-        .portfolio-item {
-            position: relative;
-            height: 400px;
-            border-radius: 4px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .portfolio-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-
-        .portfolio-image {
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            transition: transform 0.5s;
-        }
-
-        .portfolio-item:hover .portfolio-image {
-            transform: scale(1.1);
-        }
-
-        .portfolio-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(26,26,26,0.95), transparent);
-            padding: 2rem;
-            color: white;
-            transform: translateY(100%);
-            transition: transform 0.3s;
-        }
-
-        .portfolio-item:hover .portfolio-overlay {
-            transform: translateY(0);
-        }
-
-        .portfolio-overlay h3 {
-            font-family: var(--font-headings);
-            font-weight: normal;
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .portfolio-overlay p {
-            color: rgba(255,255,255,0.8);
-            font-size: 0.9rem;
+        /* --- Load More Button --- */
+        .load-more-container {
+            text-align: center;
+            margin-top: 3rem;
         }
 
         /* --- Gallery Lightbox --- */
-        .lightbox {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .lightbox.active {
-            display: flex;
-        }
-        
-        .lightbox-content {
-            position: relative;
-            max-width: 90vw;
-            max-height: 90vh;
-        }
-
-        .lightbox-img {
-            max-width: 100%;
-            max-height: 90vh;
-            display: block;
-            margin: auto;
-            border-radius: 4px;
-        }
-        
-        .lightbox-close, .lightbox-prev, .lightbox-next {
-            position: absolute;
-            color: white;
-            cursor: pointer;
-            font-size: 2.5rem;
-            font-weight: bold;
-            transition: color 0.3s;
-            user-select: none;
-        }
-        
-        .lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover {
-            color: var(--accent);
-        }
-
-        .lightbox-close {
-            top: 20px;
-            right: 30px;
-        }
-
-        .lightbox-prev, .lightbox-next {
-            top: 50%;
-            transform: translateY(-50%);
-            padding: 1rem;
-        }
-
+        .lightbox { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); justify-content: center; align-items: center; }
+        .lightbox.active { display: flex; }
+        .lightbox-content { position: relative; max-width: 90vw; max-height: 90vh; }
+        .lightbox-img { max-width: 100%; max-height: 90vh; display: block; margin: auto; border-radius: 4px; }
+        .lightbox-close, .lightbox-prev, .lightbox-next { position: absolute; color: white; cursor: pointer; font-size: 2.5rem; font-weight: bold; transition: color 0.3s; user-select: none; }
+        .lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover { color: var(--accent); }
+        .lightbox-close { top: 20px; right: 30px; }
+        .lightbox-prev, .lightbox-next { top: 50%; transform: translateY(-50%); padding: 1rem; }
         .lightbox-prev { left: 20px; }
         .lightbox-next { right: 20px; }
 
         /* --- Contact Section --- */
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
-
+        .contact-container { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
         .contact-info { display: flex; flex-direction: column; gap: 2rem; }
         .contact-item { display: flex; gap: 1.5rem; align-items: flex-start; }
         .contact-icon { width: 50px; height: 50px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.3rem; flex-shrink: 0; }
@@ -419,13 +156,11 @@
         .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); }
         .form-group textarea { min-height: 150px; resize: vertical; }
 
-        /* --- Footer --- */
+        /* --- Footer & WhatsApp --- */
         footer { background: var(--primary); color: white; padding: 3rem 5%; text-align: center; }
         .social-links { display: flex; gap: 2rem; justify-content: center; margin-bottom: 2rem; }
         .social-links a { color: white; font-size: 1.5rem; transition: color 0.3s; }
         .social-links a:hover { color: var(--accent); }
-
-        /* --- WhatsApp Float Button --- */
         .whatsapp-float { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.8rem; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); cursor: pointer; transition: transform 0.3s; z-index: 999; text-decoration: none; }
         .whatsapp-float:hover { transform: scale(1.1); }
 
@@ -457,20 +192,14 @@
     <!-- Navigation -->
     <nav>
         <div class="container">
-            <a href="#inicio" class="logo">
-                <img src="assets/images/logos/logo-negro.png" alt="Sinergia">
-            </a>
+            <a href="#inicio" class="logo"><img src="assets/images/logos/logo-negro.png" alt="Sinergia"></a>
             <ul class="nav-links">
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#nosotros">Nosotros</a></li>
                 <li><a href="#proyectos">Proyectos</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
+            <div class="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
         </div>
     </nav>
 
@@ -508,17 +237,14 @@
             <h2 class="section-title reveal">Nuestros Proyectos</h2>
             <p class="section-subtitle reveal">Espacios diseñados con pasión y precisión</p>
             <div class="portfolio-grid"></div>
+            <div class="load-more-container reveal"></div> <!-- Contenedor para el botón "Ver más" -->
         </div>
     </section>
 
     <!-- Gallery Lightbox -->
     <div id="galleryLightbox" class="lightbox">
-        <span class="lightbox-close">&times;</span>
-        <span class="lightbox-prev">&#10094;</span>
-        <span class="lightbox-next">&#10095;</span>
-        <div class="lightbox-content">
-            <img src="" class="lightbox-img" alt="Vista del proyecto">
-        </div>
+        <span class="lightbox-close">&times;</span><span class="lightbox-prev">&#10094;</span><span class="lightbox-next">&#10095;</span>
+        <div class="lightbox-content"><img src="" class="lightbox-img" alt="Vista del proyecto"></div>
     </div>
 
     <!-- Contact Section -->
@@ -528,40 +254,13 @@
             <p class="section-subtitle reveal">Hablemos sobre tu próximo proyecto</p>
             <div class="contact-container reveal">
                 <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">📍</div>
-                        <div>
-                            <h3>Ubicación</h3>
-                            <p>San Miguel de Tucumán<br>Tucumán, Argentina</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📱</div>
-                        <div>
-                            <h3>WhatsApp</h3>
-                            <p><a href="https://wa.me/543814470575" target="_blank">+54 381 447 0575</a></p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">✉️</div>
-                        <div>
-                            <h3>Email</h3>
-                            <p><a href="mailto:santiagomanzanares@hotmail.com">santiagomanzanares@hotmail.com</a></p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📷</div>
-                        <div>
-                            <h3>Instagram</h3>
-                            <p><a href="https://instagram.com/sinergia.arqui" target="_blank">@sinergia.arqui</a></p>
-                        </div>
-                    </div>
+                    <div class="contact-item"><div class="contact-icon">📍</div><div><h3>Ubicación</h3><p>San Miguel de Tucumán<br>Tucumán, Argentina</p></div></div>
+                    <div class="contact-item"><div class="contact-icon">📱</div><div><h3>WhatsApp</h3><p><a href="https://wa.me/543814470575" target="_blank">+54 381 447 0575</a></p></div></div>
+                    <div class="contact-item"><div class="contact-icon">✉️</div><div><h3>Email</h3><p><a href="mailto:santiagomanzanares@hotmail.com">santiagomanzanares@hotmail.com</a></p></div></div>
+                    <div class="contact-item"><div class="contact-icon">📷</div><div><h3>Instagram</h3><p><a href="https://instagram.com/sinergia.arqui" target="_blank">@sinergia.arqui</a></p></div></div>
                 </div>
                 <form class="contact-form" action="https://formsubmit.co/santiagomanzanares@hotmail.com" method="POST">
-                    <input type="hidden" name="_subject" value="Nuevo mensaje desde Sinergia Web">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_next" value="https://tudominio.com/gracias.html">
+                    <input type="hidden" name="_subject" value="Nuevo mensaje desde Sinergia Web"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_template" value="table"><input type="hidden" name="_next" value="https://tudominio.com/gracias.html">
                     <div class="form-group"><label>Nombre</label><input type="text" name="nombre" required></div>
                     <div class="form-group"><label>Email</label><input type="email" name="email" required></div>
                     <div class="form-group"><label>Teléfono (opcional)</label><input type="tel" name="telefono"></div>
@@ -575,9 +274,7 @@
     <!-- Footer -->
     <footer>
         <div class="social-links">
-            <a href="https://instagram.com/sinergia.arqui" target="_blank">📷</a>
-            <a href="https://wa.me/543814470575" target="_blank">💬</a>
-            <a href="mailto:santiagomanzanares@hotmail.com">✉️</a>
+            <a href="https://instagram.com/sinergia.arqui" target="_blank">📷</a><a href="https://wa.me/543814470575" target="_blank">💬</a><a href="mailto:santiagomanzanares@hotmail.com">✉️</a>
         </div>
         <p>&copy; 2025 Sinergia Arquitectos. Todos los derechos reservados.</p>
         <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.7;">San Miguel de Tucumán, Argentina</p>
@@ -654,18 +351,48 @@
             { folder: 'YC - LAS YUNGAS', title: 'YC - Las Yungas', principalImage: '01.Principal.png', images: ['01.Principal.png', '02.Frente.png', '03.Galeria.png'] },
         ];
 
-        // --- 4. Generación Dinámica del Portafolio y Lógica del Lightbox ---
+        // --- 4. Generación Dinámica del Portafolio con "Ver Más" ---
         const portfolioGrid = document.querySelector('.portfolio-grid');
-        projects.forEach(project => {
+        const loadMoreContainer = document.querySelector('.load-more-container');
+        const projectsToShowInitially = 6;
+        
+        // Función para crear y añadir un item de proyecto
+        const createProjectItem = (project) => {
             const folderPath = encodeURIComponent(project.folder);
             const imagePath = encodeURIComponent(project.principalImage);
             const portfolioItem = document.createElement('div');
             portfolioItem.className = 'portfolio-item reveal';
             portfolioItem.dataset.folder = project.folder;
             portfolioItem.innerHTML = `<div class="portfolio-image" style="background-image: url('assets/images/portfolio/${folderPath}/${imagePath}')"></div><div class="portfolio-overlay"><h3>${project.title}</h3><p>Arquitectura residencial</p></div>`;
-            portfolioGrid.appendChild(portfolioItem);
+            return portfolioItem;
+        };
+
+        // Carga inicial de proyectos
+        projects.slice(0, projectsToShowInitially).forEach(project => {
+            portfolioGrid.appendChild(createProjectItem(project));
         });
 
+        // Si hay más proyectos, crea el botón "Ver Más"
+        if (projects.length > projectsToShowInitially) {
+            const loadMoreButton = document.createElement('button');
+            loadMoreButton.innerText = 'Ver más proyectos';
+            loadMoreButton.className = 'btn btn-primary';
+            loadMoreContainer.appendChild(loadMoreButton);
+
+            loadMoreButton.addEventListener('click', () => {
+                // Carga los proyectos restantes
+                projects.slice(projectsToShowInitially).forEach(project => {
+                    const newItem = createProjectItem(project);
+                    portfolioGrid.appendChild(newItem);
+                    // IMPORTANTE: Observar el nuevo elemento para que la animación de revelado funcione
+                    revealObserver.observe(newItem);
+                });
+                // Oculta el botón después de hacer clic
+                loadMoreButton.remove();
+            });
+        }
+
+        // --- 5. Lógica del Lightbox ---
         const lightbox = document.getElementById('galleryLightbox');
         const lightboxImg = lightbox.querySelector('.lightbox-img');
         const closeBtn = lightbox.querySelector('.lightbox-close');
@@ -710,12 +437,12 @@
             if (e.key === 'ArrowLeft') showPrevImage();
         });
         
-        // --- 5. Animaciones al Desplazarse ---
+        // --- 6. Animaciones al Desplazarse ---
         const revealObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
+                    // No des-observar para que los nuevos items cargados puedan ser observados
                 }
             });
         }, { threshold: 0.1 });
